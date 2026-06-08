@@ -1,175 +1,208 @@
-<!DOCTYPE html>
-<html lang="ur" dir="rtl">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>کلاس اور کورس منتخب کریں</title>
-  <style>
-    @import url('https://fonts.googleapis.com/css2?family=Almarai&display=swap');
 
-    body {
-      font-family: 'Almarai', sans-serif;
-      background: linear-gradient(135deg, #667eea, #764ba2);
-      min-height: 100vh;
-      margin: 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 25px;
-      user-select: none;
-      direction: rtl;
-      color: #f0f0f5;
-    }
-    .container {
-      background: rgba(255 255 255 / 0.15);
-      backdrop-filter: blur(20px);
-      border-radius: 25px;
-      box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
-      padding: 40px 50px;
-      max-width: 450px;
-      width: 100%;
-      text-align: center;
-      border: 1px solid rgba(255 255 255 / 0.18);
-      transition: transform 0.3s ease;
-    }
-    .container:hover {
-      transform: scale(1.03);
-      box-shadow: 0 10px 50px 0 rgba(31, 38, 135, 0.6);
-    }
-    h1 {
-      margin-bottom: 35px;
-      font-size: 2.8rem;
-      font-weight: 800;
-      user-select: none;
-      text-shadow: 0 2px 6px rgba(0,0,0,0.3);
-    }
-    select {
-      font-size: 1.4rem;
-      padding: 14px 18px;
-      margin: 20px 0 40px;
-      width: 100%;
-      border-radius: 15px;
-      border: none;
-      outline: none;
-      cursor: pointer;
-      background: rgba(255 255 255 / 0.9);
-      color: #333;
-      box-shadow: 0 4px 12px rgba(0,0,0,0.15);
-      transition: box-shadow 0.3s ease;
-      user-select: none;
-      -webkit-appearance: none;
-      -moz-appearance: none;
-      appearance: none;
-      background-image: url('data:image/svg+xml;utf8,<svg fill="%23333" height="24" viewBox="0 0 24 24" width="24" xmlns="http://www.w3.org/2000/svg"><path d="M7 10l5 5 5-5z"/></svg>');
-      background-repeat: no-repeat;
-      background-position: right 15px center;
-      background-size: 18px 18px;
-    }
-    select:hover, select:focus {
-      box-shadow: 0 6px 18px rgba(0,0,0,0.25);
-    }
-    #details {
-      font-size: 1.2rem;
-      line-height: 1.6;
-      color: #e1e1f7;
-      min-height: 130px;
-      background: rgba(0 0 0 / 0.25);
-      padding: 25px 30px;
-      border-radius: 20px;
-      box-shadow: inset 0 0 15px rgba(0,0,0,0.4);
-      user-select: text;
-      white-space: pre-wrap;
-      text-align: right;
-      font-family: 'Almarai', sans-serif;
-      transition: background-color 0.3s ease;
-    }
-  </style>
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sirajia Milk Shop</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f5e6d3;
+            padding: 20px;
+        }
+        .box {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            border-radius: 20px;
+            padding: 20px;
+        }
+        h1 {
+            color: #2c5a2e;
+            text-align: center;
+        }
+        input, button {
+            padding: 10px;
+            margin: 5px;
+            border-radius: 10px;
+        }
+        input {
+            width: 90%;
+            border: 1px solid #ffcf8a;
+        }
+        button {
+            background: #f3b33d;
+            border: none;
+            cursor: pointer;
+        }
+        .item {
+            background: #fef3e2;
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 10px;
+        }
+        .total {
+            background: #2c5a2e;
+            color: white;
+            padding: 15px;
+            text-align: center;
+            border-radius: 10px;
+            margin-top: 15px;
+        }
+        .bill {
+            background: black;
+            color: lime;
+            padding: 10px;
+            font-family: monospace;
+            font-size: 12px;
+            margin-top: 15px;
+            border-radius: 10px;
+        }
+    </style>
 </head>
 <body>
-  <div class="container" role="main">
-    <h1>کلاس اور کورس منتخب کریں</h1>
-    <select id="classSelect" aria-label="کلاس منتخب کریں">
-      <option value="" disabled selected>اپنی کلاس منتخب کریں</option>
-      <option value="9th">9th</option>
-      <option value="10th">10th</option>
-      <option value="11th">11th</option>
-      <option value="12th">12th</option>
-      <option value="13th">13th</option>
-      <option value="14th">14th</option>
-    </select>
 
-    <select id="courseSelect" disabled aria-label="کورس منتخب کریں">
-      <option value="" disabled selected>پہلے کلاس منتخب کریں</option>
-    </select>
+<div class="box">
+    <h1>🥛 SIRAJIA MILK SHOP 🥛</h1>
+    
+    <label>Customer Name:</label>
+    <input type="text" id="customer" placeholder="Enter name" value="Rashidul Hasan">
+    
+    <div id="items"></div>
+    
+    <button onclick="addItem()">➕ Add Item</button>
+    
+    <div class="total">
+        TOTAL: ₹ <span id="grandTotal">0</span>
+    </div>
+    
+    <button onclick="downloadBill()">💾 Download Bill</button>
+    
+    <div class="bill" id="billPreview">
+        Bill will appear here...
+    </div>
+</div>
 
-    <div id="details" aria-live="polite" aria-atomic="true">کورس کی تفصیل یہاں دکھائی جائے گی۔</div>
-  </div>
+<script>
+    let items = [
+        { name: "🥛 Milk", price: 60, qty: 2.5 },
+        { name: "🍶 Yoghurt", price: 45, qty: 1 },
+        { name: "🥚 Eggs", price: 8, qty: 12 }
+    ];
+    let nextId = 4;
 
-  <script>
-    const coursesData = {
-      "9th": {
-        "Computer": "9th کمپیوٹر سائنس کا کورس بنیادی کمپیوٹر اصولوں، پروگرامنگ کی شروعات، اور عملی مشقوں پر مشتمل ہے۔ اس کو پڑھ کر آپ کمپیوٹر کی سمجھ حاصل کر سکتے ہیں۔",
-        "Biology": "9th حیاتیات کا کورس جسمانی نظام، حیاتیاتی عمل، اور ماحولیات پر تفصیلی معلومات فراہم کرتا ہے۔ یہ طبی اور سائنسی فیلڈز کے لیے بنیادی ہے۔"
-      },
-      "10th": {
-        "Computer": "10th کمپیوٹر سائنس میں ڈیٹا بیس، پروگرامنگ، اور نیٹ ورکنگ کی ابتدائی تعلیم دی جاتی ہے۔ یہ کورس کمپیوٹر کے پیشہ ورانہ پہلوؤں کو سمجھنے میں مدد دیتا ہے۔",
-        "Biology": "10th حیاتیات میں جینیات، انسانی جسم کے نظام، اور جدید حیاتیاتی تکنیکوں کا تعارف ہوتا ہے۔ یہ فیلڈ سائنسی تحقیق کے لیے اہم ہے۔"
-      },
-      "11th": {
-        "ICS": "11th آئی سی ایس کورس میں کمپیوٹر پروگرامنگ، ڈیٹا اسٹرکچر، اور سافٹ ویئر انجینئرنگ کی بنیادیں شامل ہیں۔ یہ کورس آپ کو آئی ٹی فیلڈ میں آگے بڑھنے کے لیے تیار کرتا ہے۔",
-        "FSC": "11th ایف ایس سی سائنس کے بنیادی مضامین جیسے کیمسٹری، فزکس، اور حیاتیات پر مشتمل ہے۔ یہ طبی اور سائنسی کیریئرز کے لیے موزوں ہے۔",
-        "ICOM": "11th آئکوم کورس میں اکاؤنٹنگ، بزنس اسٹڈیز، اور اقتصادیات کی تعلیم دی جاتی ہے۔ یہ کورس کاروباری شعبے میں مہارت فراہم کرتا ہے۔",
-        "FA.IT": "11th ایف اے آئی ٹی کورس میں فائن آرٹس کے ساتھ انفارمیشن ٹیکنالوجی کی تعلیم دی جاتی ہے۔ یہ کورس آپ کو جدید تکنیکی اور تخلیقی مہارتیں سکھاتا ہے۔"
-      },
-      "12th": {
-        "ICS": "12th آئی سی ایس کورس میں پروگرامنگ لینگویجز، ویب ٹیکنالوجیز، اور سسٹم ڈویلپمنٹ کی تفصیلات شامل ہیں۔ یہ کورس آئی ٹی انڈسٹری کے لیے بہترین بنیاد ہے۔",
-        "FSC": "12th ایف ایس سی میں مزید پیچیدہ سائنسی موضوعات جیسے مالیکیولر بایولوجی، اور ایڈوانس کیمسٹری شامل ہیں۔ یہ میڈیکل اور ریسرچ کے لیے اہم ہے۔",
-        "ICOM": "12th آئکوم میں کاروباری مینجمنٹ، فنانس، اور مارکیٹنگ کے موضوعات شامل ہیں جو کاروباری دنیا میں آپ کی مدد کریں گے۔",
-        "FA.IT": "12th ایف اے آئی ٹی کورس میں فائن آرٹس کے ساتھ انفارمیشن ٹیکنالوجی کی تعلیم دی جاتی ہے۔ یہ کورس آپ کو جدید تکنیکی اور تخلیقی مہارتیں سکھاتا ہے۔"
-      },
-      "13th": {
-        "Diploma": "13th ڈپلومہ کورس میں تکنیکی اور پیشہ ورانہ تعلیم دی جاتی ہے تاکہ آپ کسی خاص فیلڈ میں مہارت حاصل کر سکیں۔"
-      },
-      "14th": {
-        "Certificate": "14th سرٹیفکیٹ کورسز مختصر مدت کے ہوتے ہیں جو خاص مہارتیں سکھاتے ہیں جیسے کمپیوٹر، زبانیں، یا تکنیکی ہنر۔"
-      }
-    };
+    function showItems() {
+        let html = '';
+        let total = 0;
+        
+        for(let i = 0; i < items.length; i++) {
+            let item = items[i];
+            let itemTotal = item.qty * item.price;
+            total = total + itemTotal;
+            
+            html = html + '<div class="item">';
+            html = html + '<b>' + item.name + '</b><br>';
+            html = html + 'Qty: <input type="number" id="qty_' + i + '" value="' + item.qty + '" step="0.5" style="width:80px" onchange="updateQty(' + i + ', this.value)"> ';
+            html = html + '₹' + item.price + ' = ₹' + itemTotal.toFixed(2);
+            html = html + ' <button onclick="removeItem(' + i + ')">❌</button>';
+            html = html + '</div>';
+        }
+        
+        document.getElementById('items').innerHTML = html;
+        document.getElementById('grandTotal').innerHTML = total.toFixed(2);
+        makeBill();
+    }
+    
+    function updateQty(index, val) {
+        items[index].qty = parseFloat(val);
+        if(isNaN(items[index].qty)) items[index].qty = 0;
+        showItems();
+    }
+    
+    function removeItem(index) {
+        if(items.length <= 1) {
+            alert("At least one item needed!");
+            return;
+        }
+        items.splice(index, 1);
+        showItems();
+    }
+    
+    function addItem() {
+        let name = prompt("Item name:", "Butter");
+        if(!name) name = "New Item";
+        let price = parseFloat(prompt("Price per unit:", "50"));
+        if(isNaN(price)) price = 50;
+        let qty = parseFloat(prompt("Quantity:", "1"));
+        if(isNaN(qty)) qty = 1;
+        
+        items.push({ name: name, price: price, qty: qty });
+        showItems();
+    }
+    
+    function makeBill() {
+        let customer = document.getElementById('customer').value;
+        let date = new Date().toLocaleString();
+        let total = 0;
+        let text = '';
+        
+        for(let i = 0; i < items.length; i++) {
+            let item = items[i];
+            let itemTotal = item.qty * item.price;
+            total = total + itemTotal;
+            text = text + item.name + " | " + item.qty + " × ₹" + item.price + " = ₹" + itemTotal.toFixed(2) + "\n";
+        }
+        
+        let bill = "╔════════════════════════════════╗\n";
+        bill = bill + "║    SIRAJIA MILK SHOP         ║\n";
+        bill = bill + "╚════════════════════════════════╝\n";
+        bill = bill + "Customer: " + customer + "\n";
+        bill = bill + "Date: " + date + "\n";
+        bill = bill + "--------------------------------\n";
+        bill = bill + text;
+        bill = bill + "--------------------------------\n";
+        bill = bill + "TOTAL: ₹" + total.toFixed(2) + "\n";
+        bill = bill + "Thank you! Visit Again\n";
+        
+        document.getElementById('billPreview').innerHTML = '<pre>' + bill + '</pre>';
+    }
+    
+    function downloadBill() {
+        let customer = document.getElementById('customer').value;
+        let date = new Date().toISOString().slice(0, 19);
+        let total = 0;
+        let text = '';
+        
+        for(let i = 0; i < items.length; i++) {
+            let item = items[i];
+            let itemTotal = item.qty * item.price;
+            total = total + itemTotal;
+            text = text + item.name + " | " + item.qty + " × ₹" + item.price + " = ₹" + itemTotal.toFixed(2) + "\n";
+        }
+        
+        let bill = "SIRAJIA MILK SHOP\n";
+        bill = bill + "Customer: " + customer + "\n";
+        bill = bill + "Date: " + new Date().toLocaleString() + "\n";
+        bill = bill + "----------------------------\n";
+        bill = bill + text;
+        bill = bill + "----------------------------\n";
+        bill = bill + "TOTAL: ₹" + total.toFixed(2) + "\n";
+        bill = bill + "Thank you!\n";
+        
+        let blob = new Blob([bill], {type: "text/plain"});
+        let url = URL.createObjectURL(blob);
+        let a = document.createElement('a');
+        a.href = url;
+        a.download = "Sirajia_Bill_" + customer + "_" + date + ".txt";
+        a.click();
+        URL.revokeObjectURL(url);
+        alert("Bill Downloaded!");
+    }
+    
+    document.getElementById('customer').addEventListener('input', makeBill);
+    showItems();
+</script>
 
-    const classSelect = document.getElementById('classSelect');
-    const courseSelect = document.getElementById('courseSelect');
-    const detailsDiv = document.getElementById('details');
-
-    classSelect.addEventListener('change', () => {
-      const selectedClass = classSelect.value;
-      detailsDiv.textContent = "کورس کی تفصیل یہاں دکھائی جائے گی۔";
-
-      courseSelect.innerHTML = '';
-      courseSelect.disabled = false;
-
-      const defaultOption = document.createElement('option');
-      defaultOption.text = "اپنا کورس منتخب کریں";
-      defaultOption.disabled = true;
-      defaultOption.selected = true;
-      courseSelect.add(defaultOption);
-
-      const courses = coursesData[selectedClass];
-      for (const course in courses) {
-        let opt = document.createElement('option');
-        opt.value = course;
-        opt.text = course;
-        courseSelect.add(opt);
-      }
-    });
-
-    courseSelect.addEventListener('change', () => {
-      const selectedClass = classSelect.value;
-      const selectedCourse = courseSelect.value;
-      if(selectedClass && selectedCourse){
-        detailsDiv.textContent = coursesData[selectedClass][selectedCourse] || "تفصیل دستیاب نہیں ہے۔";
-      } else {
-        detailsDiv.textContent = "کورس کی تفصیل یہاں دکھائی جائے گی۔";
-      }
-    });
-  </script>
 </body>
 </html>
